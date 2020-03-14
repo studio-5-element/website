@@ -4,7 +4,10 @@ module.exports = {
     title: `Studio 5 Element`,
     author: `Wiktor Bednarz @CooperByte`,
     description: `Portfolio Aleksandry Jakubickiej - architekta wnętrz`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    siteUrl: `https://studio5element.netlify.com/`,
+    social: {
+      twitter: `kylemathews`,
+    },
   },
   plugins: [
     `gatsby-plugin-netlify-cms`,
