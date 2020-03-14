@@ -1,6 +1,6 @@
 backend:
-  name: studio-5-element
-  repo: https://github.com/studio-5-element/website
+  name: github
+  repo: studio-5-element/website
 
 media_folder: static/assets
 public_folder: assets
