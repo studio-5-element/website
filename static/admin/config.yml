@@ -1,18 +1,34 @@
 backend:
-  name: github
-  repo: studio-5-element/website
+  name: "github"
+  repo: "studio-5-element/website"
 
-media_folder: static/assets
-public_folder: assets
+media_folder: "static/assets"
+public_folder: "assets"
 
 collections:
-  - name: blog
-    label: Blog
-    folder: content/blog
+  - name: "blog"
+    label: "Blog"
+    folder: "content/blog"
     create: true
     fields:
-      - { name: path, label: Path }
-      - { name: date, label: Date, widget: date }
-      - { name: title, label: Title }
-      - { name: description, label: Description }
-      - { name: body, label: Body, widget: markdown }
+      - { name: "path", label: "Path" }
+      - { name: "date", label: "Date", widget: "date" }
+      - { name: "title", label: "Title" }
+      - { name: "description", label: "Description" }
+      - { name: "body", label: "Body", widget: "markdown" }
+  - name: "pages"
+    label: "Strony"
+    files:
+      - label: "Projekt"
+        name: "project"
+        file: "/content/pages/project.yml"
+        fields:
+          - { name: "title", label: "Tytuł", widget: "string" }
+          - { name: "description", label: "Opis", widget: "markdown" }
+          - { name: "stepName", label: "Nazwa Kroku", widget: "string" }
+          - name: "steps"
+            label: "Kroki"
+            widget: "list"
+            fields:
+                - { name: "title", label: "Nazwa", widget: "string" }
+                - { name: "description", label: "Opis", widget: "markdown" }

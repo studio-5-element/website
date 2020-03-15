@@ -5,12 +5,12 @@ import Layout from "../components/Layout"
 import SEO from "../components/SEO"
 import { rhythm } from "../utils/typography"
 
-const Blog = ({ data }) => {
+const Blog = ({ data, location }) => {
     const siteTitle = data.site.siteMetadata.title
     const posts = data.allMdx.edges
 
     return (
-        <Layout location={this.props.location} title={siteTitle}>
+        <Layout location={location} title={siteTitle}>
             <SEO title="All posts" />
             <div style={{ margin: "20px 0 40px" }}>
             {posts.map(({ node }) => {
