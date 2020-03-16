@@ -21,14 +21,44 @@ collections:
     files:
       - label: "Projekt"
         name: "project"
-        file: "/content/pages/project.yml"
+        file: "/content/pages/project.md"
         fields:
+          - label: "Meta-dane Strony"
+            name: "pageMetaData"
+            widget: "object"
+            fields:
+              - { name: "title", label: "Tytuł", widget: "string" }
+              - { name: "description", label: "Opis", widget: "string" }
           - { name: "title", label: "Tytuł", widget: "string" }
           - { name: "description", label: "Opis", widget: "markdown" }
           - { name: "stepName", label: "Nazwa Kroku", widget: "string" }
-          - name: "steps"
-            label: "Kroki"
+          - name: "step"
+            label: "Krok"
             widget: "list"
             fields:
-                - { name: "title", label: "Nazwa", widget: "string" }
-                - { name: "description", label: "Opis", widget: "markdown" }
+              - { name: "title", label: "Nazwa", widget: "string" }
+              - { name: "description", label: "Opis", widget: "markdown" }
+      - label: "Realizacje"
+        name: "caseStudy"
+        file: "/content/pages/caseStudy.md"
+        fields:
+          - label: "Meta-dane Strony"
+            name: "pageMetaData"
+            widget: "object"
+            fields:
+              - { name: "title", label: "Tytuł", widget: "string" }
+              - { name: "description", label: "Opis", widget: "string" }
+          - { name: "title", label: "Tytuł", widget: "string" }
+          - name: "section"
+            label: "Sekcja"
+            widget: "list"
+            fields:
+              - { name: "title", label: "Nazwa", widget: "string" }
+              - { name: "subTitle", label: "Podnazwa", widget: "string" }
+              - name: "gallery"
+                label: "Galeria"
+                widget: "list"
+                fields:
+                - { name: "image", label: "Obraz", widget: "image" }
+                - { name: "alt", label: "Opis", widget: "string" }
+

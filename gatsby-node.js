@@ -64,3 +64,36 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     })
   }
 }
+
+const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
+
+exports.downloadMediaFiles = ({
+    nodes,
+    getCache,
+    createNode,
+    createNodeId,
+    _auth,
+}) => {
+    nodes.map(async node => {
+        let fileNode
+
+        try {
+            fileNode = await createRemoteFileNode({
+                url: node.source_url,
+                parentNodeId: node.id,
+                getCache,
+                createNode,
+                createNodeId,
+                auth: _auth,
+            })
+        } catch (e) {
+            // Ignore
+        }
+
+        // Adds a field `localFile` to the node
+        // ___NODE appendix tells Gatsby that this field will link to another node
+        if (fileNode) {
+            node.localFile___NODE = fileNode.id
+        }
+    })
+}
