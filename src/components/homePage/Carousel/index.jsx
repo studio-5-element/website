@@ -15,13 +15,29 @@ Container.displayName = 'CarouselContainer';
 const CarouselWrapper = styled.div`
     width: 100%;
     max-width: 1920px;
-    height: 700px;
+    height: 400px;
 
     .slick-slide {
-        height: 700px;
+        height: 400px;
 
         div {
             height: 100%;
+        }
+    }
+
+    @media screen and (min-width: 768px) {
+        height: 550px;
+
+        .slick-slide {
+            height: 550px;
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        height: 700px;
+
+        .slick-slide {
+            height: 700px;
         }
     }
 `;
@@ -63,9 +79,9 @@ TextWrapper.displayName = 'CarouselTextWrapper';
 const TextWrapperInner = styled.div`
     position: absolute;
     right: 50%;
-    top: -175px;
-    width: 600px;
-    max-height: 350px;
+    top: -150px;
+    width: 300px;
+    max-height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -74,6 +90,19 @@ const TextWrapperInner = styled.div`
     background-color: rgba(255, 255, 255, .5);
     border-radius: 4px;
     text-align: center;
+
+    @media screen and (min-width: 768px) {
+        top: -175px;
+        max-width: 600px;
+        max-height: 350px;
+        width: 50vw;
+    }
+
+    @media screen and (min-width: 1024px) {
+        top: -175px;
+        width: 600px;
+        max-height: 350px;
+    }
 `;
 TextWrapperInner.displayName = 'CarouselTextWrapperInner';
 

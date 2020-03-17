@@ -77,7 +77,6 @@ exports.downloadMediaFiles = ({
 }) => {
     nodes.map(async node => {
         let fileNode
-        fmImagesToRelative(node);
         try {
             fileNode = await createRemoteFileNode({
                 url: node.source_url,

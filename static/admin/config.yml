@@ -43,6 +43,13 @@ collections:
                   - { name: "displayTextContent", label: "Widoczność tekstu", widget: "boolean", default: false }
                   - { name: "header", label: "Nagłówek", required: false, widget: "string", default: "" }
                   - { name: "description", label: "Opis", required: false, widget: "string", default: "" }
+          - label: "O mnie"
+            name: "about"
+            widget: "object"
+            fields:
+              - { name: "image", label: "Portret", widget: "image" }
+              - { name: "header", label: "Nagłówek", widget: "string", default: "" }
+              - { name: "description", label: "Opis", widget: "markdown" }
       - label: "Projekt"
         name: "project"
         file: "/content/pages/project.md"

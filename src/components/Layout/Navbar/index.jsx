@@ -64,6 +64,7 @@ const DesktopItemButton = styled.li`
 DesktopItemButton.displayName = 'NavbarDesktopItemButton';
 
 const Button = styled.button`
+    font-weight: 500;
     height: 100%;
     position: relative;
     display: flex;
