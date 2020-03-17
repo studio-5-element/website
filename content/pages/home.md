@@ -11,7 +11,7 @@ carousel:
       displayTextContent: true
     - image: /assets/work-3480187_1920.jpg
       displayTextContent: false
-      header: a
+      header: ''
   overlay:
     opacity: 30
     image: /assets/background-1180666_1920.jpg
