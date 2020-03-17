@@ -56,14 +56,14 @@ const DesktopLogoButton = ({ isVisible }) => {
         hidden: {
             width: 0,
             transition: {
-                type: 'spring',
+                ease: 'easeInOut',
                 delay: .75
             }
         },
         visible: {
             width: 75,
             transition: {
-                type: 'spring',
+                ease: 'easeInOut',
             }
         }
     };
@@ -83,7 +83,7 @@ const DesktopLogoButton = ({ isVisible }) => {
 
     const framerIconTrastitions = {
         fill: { delay: .25, duration: .5, ease: [1, 0, 0.8, 1] },
-        rotate: { delay: .5, type: "spring", stiffness: 100 },
+        rotate: { delay: .5, type: "spring", stiffness: 200, damping: 10 },
     };
 
     return (

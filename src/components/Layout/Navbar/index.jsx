@@ -12,6 +12,7 @@ import styled from 'styled-components';
 const Container = styled.div`
     width: 100%;
     position: relative;
+    z-index: 999;
 `;
 Container.displayName = 'NavbarContainer';
 
@@ -27,10 +28,13 @@ const Menu = styled.nav`
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    transition: background .3s;
+    background-color: rgba(${({ isLogoVisible }) => isLogoVisible ? '255, 255, 255, .65' : '255, 255, 255, .9'});
 `;
 Menu.displayName = 'NavbarMenu';
 
 const MenuDesktop = styled.ul`
+    padding: 0 0 0 20px;
     height: 100%;
     list-style: none;
     display: none;
@@ -48,8 +52,16 @@ MenuDesktop.displayName = 'NavbarMenuDesktop';
 const DesktopItem = styled.li`
     margin: 0;
     height: 100%;
+    flex: 2;
 `;
 DesktopItem.displayName = 'NavbarDesktopItem';
+
+const DesktopItemButton = styled.li`
+    margin: 0;
+    height: 100%;
+    flex: 1;
+`;
+DesktopItemButton.displayName = 'NavbarDesktopItemButton';
 
 const Button = styled.button`
     height: 100%;
@@ -94,20 +106,20 @@ const Navbar = () => {
     const [ isLogoVisible, setIsLogoVisible ] = useState(true);
     const { allFile: { edges: pages }} = useStaticQuery(
         graphql`
-        query {
-            allFile(filter: {name: {in: ["project", "caseStudy"]}}) {
-                edges {
-                    node {
-                        name
-                        childMdx {
-                            frontmatter {
-                                title
+            query {
+                allFile(filter: {name: {in: ["project", "caseStudy"]}}) {
+                    edges {
+                        node {
+                            name
+                            childMdx {
+                                frontmatter {
+                                    title
+                                }
                             }
                         }
                     }
                 }
             }
-        }
         `
     );
     const projectPageTitle = pages.find(page => page.node.name === 'project').node.childMdx.frontmatter.title;
@@ -125,9 +137,9 @@ const Navbar = () => {
                     <DesktopItem>
                         <Button isLogoVisible={isLogoVisible}>{projectPageTitle}</Button>
                     </DesktopItem>
-                    <DesktopItem>
+                    <DesktopItemButton>
                         <DesktopLogoButton isVisible={!isLogoVisible}/>
-                    </DesktopItem>
+                    </DesktopItemButton>
                     <DesktopItem>
                         <Button isLogoVisible={isLogoVisible}>{caseStudyPageTitle}</Button>
                     </DesktopItem>

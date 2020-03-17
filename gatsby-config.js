@@ -10,13 +10,6 @@ module.exports = {
         },
     },
     plugins: [
-        `gatsby-plugin-netlify-cms`,
-        `gatsby-plugin-styled-components`,
-        `gatsby-transformer-sharp`,
-        `gatsby-plugin-sharp`,
-        `gatsby-plugin-offline`,
-        `gatsby-plugin-react-helmet`,
-        `gatsby-plugin-feed-mdx`,
         {
             resolve: `gatsby-source-filesystem`,
             options: {
@@ -27,8 +20,8 @@ module.exports = {
         {
             resolve: `gatsby-source-filesystem`,
             options: {
-                path: `${__dirname}/content/assets/`,
-                name: `assets`,
+                path: `${__dirname}/content/assets`,
+                name: 'images',
             },
         },
         {
@@ -36,6 +29,20 @@ module.exports = {
             options: {
                 path: `${__dirname}/content/pages`,
                 name: `pages`,
+            },
+        },
+        `gatsby-transformer-sharp`,
+        `gatsby-plugin-sharp`,
+        {
+            resolve: `gatsby-transformer-remark`,
+            options: {
+                plugins: [
+                    'gatsby-remark-relative-images',
+                    {
+                        resolve: `gatsby-remark-images`,
+                        options: {},
+                    },
+                ],
             },
         },
         {
@@ -46,13 +53,13 @@ module.exports = {
                 {
                     resolve: `gatsby-remark-images`,
                     options: {
-                    maxWidth: 590,
+                        maxWidth: 590,
                     },
                 },
                 {
                     resolve: `gatsby-remark-responsive-iframe`,
                     options: {
-                    wrapperStyle: `margin-bottom: 1.0725rem`,
+                        wrapperStyle: `margin-bottom: 1.0725rem`,
                     },
                 },
                 {
@@ -93,5 +100,10 @@ module.exports = {
                 pathToConfigModule: `src/utils/typography`,
             },
         },
+        `gatsby-plugin-netlify-cms`,
+        `gatsby-plugin-styled-components`,
+        `gatsby-plugin-offline`,
+        `gatsby-plugin-react-helmet`,
+        `gatsby-plugin-feed-mdx`,
     ],
 }

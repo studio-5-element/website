@@ -2,8 +2,8 @@ backend:
   name: "github"
   repo: "studio-5-element/website"
 
-media_folder: "static/assets"
-public_folder: "assets"
+media_folder: "content/assets"
+public_folder: "/assets"
 
 collections:
   - name: "blog"
@@ -19,6 +19,30 @@ collections:
   - name: "pages"
     label: "Strony"
     files:
+      - label: "Strona Główna"
+        name: "home"
+        file: "/content/pages/home.md"
+        fields:
+          - label: "Karuzela"
+            name: "carousel"
+            widget: "object"
+            fields:
+              - { name: "secondsForSlide", label: "Czas wyświetlania slajdu [s]", widget: "number", min: 5, max: 20, default: 7 }
+              - label: "nakładka"
+                name: 'overlay'
+                widget: "object"
+                fields:
+                  - { name: "opacity", label: "Nieprzeźroczystość (0-100) [%]", widget: "number", min: 0, max: 100, default: 10 }
+                  - { name: "image", label: "Textura", widget: "image" }
+              - label: "slajd"
+                name: "slide"
+                widget: "list"
+                folder: "/content/assets"
+                fields:
+                  - { name: "image", label: "Tło", widget: "image" }
+                  - { name: "displayTextContent", label: "Widoczność tekstu", widget: "boolean", default: false }
+                  - { name: "header", label: "Nagłówek", required: false, widget: "string", default: "" }
+                  - { name: "description", label: "Opis", required: false, widget: "string", default: "" }
       - label: "Projekt"
         name: "project"
         file: "/content/pages/project.md"

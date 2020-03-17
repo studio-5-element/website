@@ -1,5 +1,6 @@
 const path = require(`path`)
-const { createFilePath } = require(`gatsby-source-filesystem`)
+const { createFilePath } = require(`gatsby-source-filesystem`);
+const { fmImagesToRelative } = require('gatsby-remark-relative-images');
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -53,16 +54,16 @@ exports.createPages = ({ graphql, actions }) => {
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
-
-  if (node.internal.type === `Mdx`) {
-    const value = createFilePath({ node, getNode })
-    createNodeField({
-      name: `slug`,
-      node,
-      value,
-    })
-  }
+    const { createNodeField } = actions
+    fmImagesToRelative(node);
+    if (node.internal.type === `Mdx`) {
+        const value = createFilePath({ node, getNode })
+        createNodeField({
+            name: `slug`,
+            node,
+            value,
+        })
+    }
 }
 
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
@@ -76,7 +77,7 @@ exports.downloadMediaFiles = ({
 }) => {
     nodes.map(async node => {
         let fileNode
-
+        fmImagesToRelative(node);
         try {
             fileNode = await createRemoteFileNode({
                 url: node.source_url,
