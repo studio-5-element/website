@@ -15,4 +15,5 @@ carousel:
   overlay:
     opacity: 30
     image: /assets/background-1180666_1920.jpg
+  secondsForSlide: 7
 ---
