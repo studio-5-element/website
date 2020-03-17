@@ -5,6 +5,6 @@ carousel:
     - image: /assets/architecture-1857175_1920.jpg
     - image: /assets/work-3480187_1920.jpg
   overlay:
-    opacity: 90
+    opacity: 30
     image: /assets/background-1180666_1920.jpg
 ---
