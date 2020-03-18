@@ -8,9 +8,11 @@
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   },
   "dependencies": {
+    "@animated-burgers/burger-squeeze": "^1.1.2",
     "@mdx-js/mdx": "^1.5.1",
     "@mdx-js/react": "^1.5.1",
     "babel-plugin-styled-components": "^1.10.0",
+    "classnames": "^2.2.6",
     "framer-motion": "^1.9.1",
     "gatsby": "^2.3.25",
     "gatsby-background-image": "^0.10.2",

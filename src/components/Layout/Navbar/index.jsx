@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
+import Img from 'gatsby-image';
 
+import Burger from '@animated-burgers/burger-squeeze';
+import '@animated-burgers/burger-squeeze/dist/styles.css';
+import { motion, useCycle } from 'framer-motion';
 import VisibilitySensor from 'react-visibility-sensor';
 
 import AnimatedLogo from '../AnimatedLogo';
@@ -29,7 +32,12 @@ const Menu = styled.nav`
     justify-content: center;
     align-items: center;
     transition: background .3s;
-    background-color: rgba(${({ isLogoVisible }) => isLogoVisible ? '255, 255, 255, .65' : '255, 255, 255, .9'});
+    background-color: #fff;
+
+    @media screen and (min-width: 768px) {
+        background-color: rgba(${({ isLogoVisible }) => isLogoVisible ? '255, 255, 255, .65' : '255, 255, 255, .9'});
+    }
+    
 `;
 Menu.displayName = 'NavbarMenu';
 
@@ -99,13 +107,123 @@ const Button = styled.button`
 `;
 Button.displayName = 'NavbarButton';
 
+const MenuMobile = styled(motion.div)`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 5px 0 10px;
+    align-items: center;
+    z-index: 9999;
+
+    @media screen and (min-width: 768px) {
+        display: none;
+        padding: 0;
+    }
+
+    .burger {
+        border: none;
+        background: none;
+        color: #000;
+        z-index: 9998;
+        outline: none;
+        font-size: 10px;
+
+        .burger-lines, .burger-lines:before, .burger-lines:after {
+            background-color: #000;
+            opacity: .7;
+        }
+    }
+
+    .burger:hover, .burger:focus {
+        opacity: 1;
+
+        .burger-lines, .burger-lines:before, .burger-lines:after {
+            opacity: 1;
+        }
+    }
+`;
+MenuMobile.displayName = 'MenuMobile';
+
+const MobileSidebar = styled(motion.div)`
+    position: fixed;
+    top: 60px;
+    left: 0;
+    bottom: 0;
+    width: 360px;
+    background: #fff;
+    z-index: 1;
+`;
+MobileSidebar.displayName = 'MobileSidebar';
+
+const MobileSidebarUnderlay = styled(motion.div)`
+    position: fixed;
+    top: 60px;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    background: rgba(0, 0, 0, .3);
+`;
+MobileSidebarUnderlay.displayName = 'MobileSidebarUnderlay';
+
+const MobileLogo = styled(Link)`
+    height: 40px;
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+`;
+MobileLogo.displayName = 'MobileLogo';
+
+const MobileLogoInner = styled(Img)`
+    img {
+        margin: 0;
+    }
+`;
+MobileLogoInner.displayName = 'MobileLogoInner';
+
+const MobileNavigation = styled(motion.ul)`
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    top: 120px;
+    left: 40px;
+    width: 280px;
+    height: fit-content;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+`;
+MobileNavigation.displayName = 'MobileNavigation';
+
+const MobileNavigationItem = styled(motion.li)`
+    margin-bottom: 30px;
+`;
+MobileNavigationItem.displayName = 'MobileNavigationitem';
+
+const MobileNavigationItemInner = styled(Link)`
+    color: #000;
+    opacity: .7;
+    font-weight: 500;
+    font-size: 20px;
+    transition: all .3s;
+    outline: none;
+
+    &:hover, &:focus {
+        opacity: 1;
+        color: #000;
+    }
+`;
+MobileNavigationItemInner.displayName = 'MobileNavigationButtonInner';
+
 const propTypes = {
 
 };
 
 const Navbar = () => {
     const [ isLogoVisible, setIsLogoVisible ] = useState(true);
-    const { allFile: { edges: pages }} = useStaticQuery(
+    const { logo, allFile: { edges: pages }} = useStaticQuery(
         graphql`
             query {
                 allFile(filter: {name: {in: ["project", "caseStudy"]}}) {
@@ -120,17 +238,106 @@ const Navbar = () => {
                         }
                     }
                 }
+                logo: file(absolutePath: {regex: "/Logo.png/"}) {
+                    childImageSharp {
+                        fixed(width: 260 height: 40) {
+                        ...GatsbyImageSharpFixed
+                        }
+                    }
+                }
             }
         `
     );
     const projectPageTitle = pages.find(page => page.node.name === 'project').node.childMdx.frontmatter.title;
     const caseStudyPageTitle = pages.find(page => page.node.name === 'caseStudy').node.childMdx.frontmatter.title;
 
+    const framerSidebar = {
+        open: {
+            clipPath: `circle(${1000 * 2 + 200}px at 0px 0px)`,
+            transition: {
+                delay: .1,
+                type: "spring",
+                stiffness: 20,
+                restDelta: 2
+            }
+        },
+        closed: {
+            clipPath: "circle(0px at 0px 0px)",
+            transition: {
+                type: "spring",
+                stiffness: 400,
+                damping: 40
+            }
+        }
+    };
+
+    const framerSidebarUnderlay = {
+        open: {
+            clipPath: `circle(${1000 * 2 + 200}px at 0px 0px)`,
+            transition: {
+                type: "spring",
+                stiffness: 20,
+                restDelta: 2
+            }
+        },
+        closed: {
+            clipPath: "circle(0px at 0px 0px)",
+            transition: {
+                delay: .1,
+                type: "spring",
+                stiffness: 400,
+                damping: 40
+            }
+        }
+    };
+
+    const framerMobileNavigation = {
+        open: {
+            height: 'fit-content',
+            transition: {
+                delay: .14,
+                staggerChildren: 0.07,
+                delayChildren: 0.2
+            }
+        },
+        closed: {
+            height: 0,
+            transition: {
+                delay: .1,
+                staggerChildren: 0.05,
+                staggerDirection: -1
+            }
+        }
+    };
+
+    const framerMobileNavigationItem = {
+        open: {
+            y: 0,
+            opacity: 1,
+            transition: {
+                y: {
+                    stiffness: 1000,
+                    velocity: -100
+                }
+            }
+        },
+        closed: {
+            y: 50,
+            opacity: 0,
+            transition: {
+                y: {
+                    stiffness: 1000
+                }
+            }
+        }
+    };
+
+    const [ isMobileOpen, toggleMobileOpen ] = useCycle(false, true);
     const onVisibilityChange = isVisible => setIsLogoVisible(isVisible ? true : false);
 
     return (
         <Container>
-            <VisibilitySensor offset={{ top: -300 }} onChange={onVisibilityChange}>
+            <VisibilitySensor offset={{ top: -360 }} onChange={onVisibilityChange}>
                 <AnimatedLogo />
             </VisibilitySensor>
             <Menu isLogoVisible={isLogoVisible}>
@@ -145,6 +352,29 @@ const Navbar = () => {
                         <Button isLogoVisible={isLogoVisible}>{caseStudyPageTitle}</Button>
                     </DesktopItem>
                 </MenuDesktop>
+                <MenuMobile
+                    initial={false}
+                    animate={isMobileOpen ? "open" : "closed"}
+                >
+                    <Burger onClick={toggleMobileOpen} isOpen={isMobileOpen} Component="button" type="button"/>
+                    <MobileLogo>
+                        <MobileLogoInner fixed={logo.childImageSharp.fixed}/>
+                    </MobileLogo>
+                    <MobileNavigation variants={framerMobileNavigation}>
+                        <MobileNavigationItem variants={framerMobileNavigationItem}>
+                            <MobileNavigationItemInner>
+                                {projectPageTitle}
+                            </MobileNavigationItemInner>
+                        </MobileNavigationItem>
+                        <MobileNavigationItem variants={framerMobileNavigationItem}>
+                            <MobileNavigationItemInner>
+                                {caseStudyPageTitle}
+                            </MobileNavigationItemInner>
+                        </MobileNavigationItem>
+                    </MobileNavigation>
+                    <MobileSidebar variants={framerSidebar}/>
+                    <MobileSidebarUnderlay variants={framerSidebarUnderlay} onClick={toggleMobileOpen}/>
+                </MenuMobile>
             </Menu>
         </Container>
     );
