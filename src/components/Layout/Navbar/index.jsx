@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useStaticQuery, graphql, Link } from "gatsby"
 import Img from 'gatsby-image';
 
+import { useMedia } from 'use-media';
 import Burger from '@animated-burgers/burger-squeeze';
 import '@animated-burgers/burger-squeeze/dist/styles.css';
 import { motion, useCycle } from 'framer-motion';
@@ -181,7 +182,7 @@ const MobileLogoInner = styled(Img)`
 `;
 MobileLogoInner.displayName = 'MobileLogoInner';
 
-const MobileNavigation = styled(motion.ul)`
+const MobileNavigation = styled.ul`
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -194,10 +195,13 @@ const MobileNavigation = styled(motion.ul)`
     padding: 0;
     list-style: none;
     overflow: hidden;
+    height: ${({ isOpen }) => isOpen ? 'fit-content' : '0'};
+    opacity: ${({ isOpen }) => isOpen ? '1' : '0'};
+    transition: opacity 1s;
 `;
 MobileNavigation.displayName = 'MobileNavigation';
 
-const MobileNavigationItem = styled(motion.li)`
+const MobileNavigationItem = styled.li`
     margin-bottom: 30px;
 `;
 MobileNavigationItem.displayName = 'MobileNavigationitem';
@@ -291,49 +295,9 @@ const Navbar = () => {
         }
     };
 
-    const framerMobileNavigation = {
-        open: {
-            height: 'fit-content',
-            transition: {
-                delay: .14,
-                staggerChildren: 0.07,
-                delayChildren: 0.2
-            }
-        },
-        closed: {
-            height: 0,
-            transition: {
-                delay: .1,
-                staggerChildren: 0.05,
-                staggerDirection: -1
-            }
-        }
-    };
-
-    const framerMobileNavigationItem = {
-        open: {
-            y: 0,
-            opacity: 1,
-            transition: {
-                y: {
-                    stiffness: 1000,
-                    velocity: -100
-                }
-            }
-        },
-        closed: {
-            y: 50,
-            opacity: 0,
-            transition: {
-                y: {
-                    stiffness: 1000
-                }
-            }
-        }
-    };
-
     const [ isMobileOpen, toggleMobileOpen ] = useCycle(false, true);
     const onVisibilityChange = isVisible => setIsLogoVisible(isVisible ? true : false);
+    const isDesktop = useMedia({ minWidth: 768 });
 
     return (
         <Container>
@@ -341,40 +305,45 @@ const Navbar = () => {
                 <AnimatedLogo />
             </VisibilitySensor>
             <Menu isLogoVisible={isLogoVisible}>
-                <MenuDesktop>
-                    <DesktopItem>
-                        <Button isLogoVisible={isLogoVisible}>{projectPageTitle}</Button>
-                    </DesktopItem>
-                    <DesktopItemButton>
-                        <DesktopLogoButton isVisible={!isLogoVisible}/>
-                    </DesktopItemButton>
-                    <DesktopItem>
-                        <Button isLogoVisible={isLogoVisible}>{caseStudyPageTitle}</Button>
-                    </DesktopItem>
-                </MenuDesktop>
-                <MenuMobile
-                    initial={false}
-                    animate={isMobileOpen ? "open" : "closed"}
-                >
-                    <Burger onClick={toggleMobileOpen} isOpen={isMobileOpen} Component="button" type="button"/>
-                    <MobileLogo>
-                        <MobileLogoInner fixed={logo.childImageSharp.fixed}/>
-                    </MobileLogo>
-                    <MobileNavigation variants={framerMobileNavigation}>
-                        <MobileNavigationItem variants={framerMobileNavigationItem}>
-                            <MobileNavigationItemInner>
-                                {projectPageTitle}
-                            </MobileNavigationItemInner>
-                        </MobileNavigationItem>
-                        <MobileNavigationItem variants={framerMobileNavigationItem}>
-                            <MobileNavigationItemInner>
-                                {caseStudyPageTitle}
-                            </MobileNavigationItemInner>
-                        </MobileNavigationItem>
-                    </MobileNavigation>
-                    <MobileSidebar variants={framerSidebar}/>
-                    <MobileSidebarUnderlay variants={framerSidebarUnderlay} onClick={toggleMobileOpen}/>
-                </MenuMobile>
+                {
+                    isDesktop ? (
+                        <MenuDesktop>
+                            <DesktopItem>
+                                <Button isLogoVisible={isLogoVisible}>{projectPageTitle}</Button>
+                            </DesktopItem>
+                            <DesktopItemButton>
+                                <DesktopLogoButton isVisible={!isLogoVisible}/>
+                            </DesktopItemButton>
+                            <DesktopItem>
+                                <Button isLogoVisible={isLogoVisible}>{caseStudyPageTitle}</Button>
+                            </DesktopItem>
+                        </MenuDesktop>
+                    ) : (
+                        <MenuMobile
+                            initial={false}
+                            animate={isMobileOpen ? "open" : "closed"}
+                        >
+                            <Burger onClick={toggleMobileOpen} isOpen={isMobileOpen} Component="button" type="button"/>
+                            <MobileLogo>
+                                <MobileLogoInner fixed={logo.childImageSharp.fixed}/>
+                            </MobileLogo>
+                            <MobileNavigation isOpen={isMobileOpen}>
+                                <MobileNavigationItem>
+                                    <MobileNavigationItemInner>
+                                        {projectPageTitle}
+                                    </MobileNavigationItemInner>
+                                </MobileNavigationItem>
+                                <MobileNavigationItem>
+                                    <MobileNavigationItemInner>
+                                        {caseStudyPageTitle}
+                                    </MobileNavigationItemInner>
+                                </MobileNavigationItem>
+                            </MobileNavigation>
+                            <MobileSidebar variants={framerSidebar}/>
+                            <MobileSidebarUnderlay variants={framerSidebarUnderlay} onClick={toggleMobileOpen}/>
+                        </MenuMobile>
+                    )
+                }
             </Menu>
         </Container>
     );
