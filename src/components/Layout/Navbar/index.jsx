@@ -260,17 +260,15 @@ const Navbar = () => {
             clipPath: `circle(${1000 * 2 + 200}px at 0px 0px)`,
             transition: {
                 delay: .1,
-                type: "spring",
-                stiffness: 20,
-                restDelta: 2
+                ease: 'easeIn',
+                duration: .4
             }
         },
         closed: {
             clipPath: "circle(0px at 0px 0px)",
             transition: {
-                type: "spring",
-                stiffness: 400,
-                damping: 40
+                ease: 'easeOut',
+                duration: .4
             }
         }
     };
@@ -279,18 +277,16 @@ const Navbar = () => {
         open: {
             clipPath: `circle(${1000 * 2 + 200}px at 0px 0px)`,
             transition: {
-                type: "spring",
-                stiffness: 20,
-                restDelta: 2
+                ease: 'easeIn',
+                duration: .4
             }
         },
         closed: {
             clipPath: "circle(0px at 0px 0px)",
             transition: {
                 delay: .1,
-                type: "spring",
-                stiffness: 400,
-                damping: 40
+                ease: 'easeOut',
+                duration: .4
             }
         }
     };
