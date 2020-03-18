@@ -84,14 +84,14 @@ module.exports = {
         {
         resolve: `gatsby-plugin-manifest`,
             options: {
-                name: `Gatsby Starter Blog`,
-                short_name: `GatsbyJS`,
+                name: `Studio 5 Element`,
+                short_name: `Studio 5 Element`,
                 start_url: `/`,
                 background_color: `#ffffff`,
-                theme_color: `#663399`,
+                theme_color: `#ff6e6e`,
                 display: `minimal-ui`,
                 // edit below
-                icon: `content/assets/gatsby-icon.png`,
+                icon: `content/assets/studio5logo.png`,
             },
         },
         {
