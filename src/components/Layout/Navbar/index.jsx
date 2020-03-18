@@ -157,13 +157,15 @@ const MobileSidebar = styled(motion.div)`
 `;
 MobileSidebar.displayName = 'MobileSidebar';
 
-const MobileSidebarUnderlay = styled(motion.div)`
+const MobileSidebarUnderlay = styled.div`
     position: fixed;
     top: 60px;
     left: 0;
+    right: 0;
     bottom: 0;
     width: 100vw;
     background: rgba(0, 0, 0, .3);
+    display: ${({ isOpen }) => isOpen ? 'initial' : 'none' }
 `;
 MobileSidebarUnderlay.displayName = 'MobileSidebarUnderlay';
 
@@ -259,7 +261,6 @@ const Navbar = () => {
         open: {
             clipPath: `circle(${1000 * 2 + 200}px at 0px 0px)`,
             transition: {
-                delay: .1,
                 ease: 'easeIn',
                 duration: .4
             }
@@ -267,24 +268,6 @@ const Navbar = () => {
         closed: {
             clipPath: "circle(0px at 0px 0px)",
             transition: {
-                ease: 'easeOut',
-                duration: .4
-            }
-        }
-    };
-
-    const framerSidebarUnderlay = {
-        open: {
-            clipPath: `circle(${1000 * 2 + 200}px at 0px 0px)`,
-            transition: {
-                ease: 'easeIn',
-                duration: .4
-            }
-        },
-        closed: {
-            clipPath: "circle(0px at 0px 0px)",
-            transition: {
-                delay: .1,
                 ease: 'easeOut',
                 duration: .4
             }
@@ -336,7 +319,7 @@ const Navbar = () => {
                                 </MobileNavigationItem>
                             </MobileNavigation>
                             <MobileSidebar variants={framerSidebar}/>
-                            <MobileSidebarUnderlay variants={framerSidebarUnderlay} onClick={toggleMobileOpen}/>
+                            <MobileSidebarUnderlay isOpen={isMobileOpen} onClick={toggleMobileOpen}/>
                         </MenuMobile>
                     )
                 }
