@@ -1,4 +1,9 @@
 ---
+pageMetadata:
+  title: Studio 5 Element - Strona Główna
+  description: >-
+    Studio 5 Element, Aleksandra Jakubicka. Architektura wnętrz, realizacja
+    projektów wnętrz domów jednorodzinnych, apartamentów oraz kawalerek.
 carousel:
   slide:
     - image: /assets/interior-design-1508276_1920.jpg
@@ -9,7 +14,7 @@ carousel:
       header: doświadczenie i pasja
       description: Szereg zrealizowanych projektów i zadowolonych zleceniodawców
       displayTextContent: true
-    - image: /assets/work-3480187_1920.jpg
+    - image: /assets/stencil-1508277_1920.jpg
       displayTextContent: false
       header: ''
   overlay:
