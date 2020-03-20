@@ -48,8 +48,8 @@ showcase:
   gallery:
     image1: /assets/02-toaleta-1.jpg
     image2: /assets/03-toaleta-2.jpg
-    image3: /assets/08-łazienka-3.jpg
-    image4: /assets/06-łazienka-1.jpg
+    image3: /assets/04-schody.jpg
+    image4: /assets/05-schody-1.jpg
     image5: /assets/11-sypialnia-1.jpg
     image6: /assets/12-sypialnia-2.jpg
 ---
