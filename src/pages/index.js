@@ -1,9 +1,11 @@
 import React from "react"
+import { useStaticQuery, gatsbyql } from 'gatsby';
 
 import Layout from "../components/Layout"
 import SEO from "../components/SEO"
 import Carousel from "../components/homePage/Carousel";
 import About from "../components/homePage/About";
+import Showcase from "../components/homePage/Showcase";
 
 import styled from 'styled-components';
 
@@ -21,19 +23,6 @@ const Main = styled.main`
     width: 100%;
     max-width: 1920px;
     overflow-x: hidden;
-    padding: 40px 20px;
-
-    @media screen and (min-width: 480px) {
-        padding: 60px 40px;
-    }
-
-    @media screen and (min-width: 768px) {
-        padding: 80px 40px;
-    }
-
-    @media screen and (min-width: 1024px) {
-        padding: 120px 80px;
-    }
 `;
 Main.displayName = 'Main';
 
@@ -49,6 +38,7 @@ const IndexPage = () => {
             </Header>
             <Main>
                 <About />
+                <Showcase />
             </Main>
         </Layout>
     )

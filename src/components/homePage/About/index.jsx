@@ -9,10 +9,24 @@ import styled from 'styled-components';
 const Container = styled.section`
     display: flex;
     flex-direction: column-reverse;
+    padding: 40px 20px;
+
+    @media screen and (min-width: 480px) {
+        padding: 60px 40px;
+    }
 
     @media screen and (min-width: 768px) {
+        padding: 80px 40px;
         flex-direction: row;
         justify-content: center;
+    }
+
+    @media screen and (min-width: 768px) {
+        
+    }
+
+    @media screen and (min-width: 1024px) {
+        padding: 120px 80px;
     }
 `;
 Container.displayName = 'Container';

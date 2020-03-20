@@ -23,6 +23,17 @@ collections:
         name: "home"
         file: "/content/pages/home.md"
         fields:
+          - label: "Metadane strony"
+            name: "pageMetadata"
+            widget: "object"
+            fields:
+              - { name: "title", label: "Tytuł", widget: "string" }
+              - { name: "description", label: "Opis", widget: "string"}
+              - label: "Słowa kluczowe"
+                name: "keywords"
+                widget: "list"
+                fields:
+                - { name: "keyword", label: "Słowo kluczowe", widget: "string" }
           - label: "Karuzela"
             name: "carousel"
             widget: "object"
@@ -50,10 +61,38 @@ collections:
               - { name: "image", label: "Portret", widget: "image" }
               - { name: "header", label: "Nagłówek", widget: "string", default: "" }
               - { name: "description", label: "Opis", widget: "markdown" }
-      - label: "Projekt"
+          - label: "Showcase"
+            name: "showcase"
+            widget: "object"
+            fields:
+              - { name: "overlay", label: "Nakładka", widget: "image" }
+              - { name: "title", label: "Nagłówek", widget: "string" }
+              - { name: "subTitle", label: "Opis", widget: "string" }
+              - label: "Galeria"
+                name: "gallery"
+                widget: "object"
+                fields:
+                  - { name: "image1", label: "1", widget: "image" }
+                  - { name: "image2", label: "2", widget: "image" }
+                  - { name: "image3", label: "3", widget: "image" }
+                  - { name: "image4", label: "4", widget: "image" }
+                  - { name: "image5", label: "5", widget: "image" }
+                  - { name: "image6", label: "6", widget: "image" }
+      - label: "Strona Projekt"
         name: "project"
         file: "/content/pages/project.md"
         fields:
+          - label: "Metadane strony"
+            name: "pageMetadata"
+            widget: "object"
+            fields:
+              - { name: "title", label: "Tytuł", widget: "string" }
+              - { name: "description", label: "Opis", widget: "string"}
+              - label: "Słowa kluczowe"
+                name: "keywords"
+                widget: "list"
+                fields:
+                - { name: "keyword", label: "Słowo kluczowe", widget: "string" }
           - label: "Meta-dane Strony"
             name: "pageMetaData"
             widget: "object"
@@ -69,16 +108,21 @@ collections:
             fields:
               - { name: "title", label: "Nazwa", widget: "string" }
               - { name: "description", label: "Opis", widget: "markdown" }
-      - label: "Realizacje"
+      - label: "Strona Realizacje"
         name: "caseStudy"
         file: "/content/pages/caseStudy.md"
         fields:
-          - label: "Meta-dane Strony"
-            name: "pageMetaData"
+          - label: "Metadane strony"
+            name: "pageMetadata"
             widget: "object"
             fields:
               - { name: "title", label: "Tytuł", widget: "string" }
-              - { name: "description", label: "Opis", widget: "string" }
+              - { name: "description", label: "Opis", widget: "string"}
+              - label: "Słowa kluczowe"
+                name: "keywords"
+                widget: "list"
+                fields:
+                - { name: "keyword", label: "Słowo kluczowe", widget: "string" }
           - { name: "title", label: "Tytuł", widget: "string" }
           - name: "section"
             label: "Sekcja"
