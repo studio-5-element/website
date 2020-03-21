@@ -46,6 +46,24 @@ showcase:
   title: BOGATE DOŚWIADCZENIE
   subTitle: Zapoznaj się z niektórymi ze zrealizowanych przeze mnie projektów.
   gallery:
+    tile1:
+      label: Hol
+      image: /assets/04-schody.jpg
+    tile2:
+      image: /assets/05-schody-1.jpg
+      label: Hol
+    tile3:
+      image: /assets/02-toaleta-1.jpg
+      label: Łazienka
+    tile4:
+      image: /assets/02-toaleta-1.jpg
+      label: Łazienka
+    tile5:
+      image: /assets/11-sypialnia-1.jpg
+      label: Sypialnia
+    tile6:
+      image: /assets/12-sypialnia-2.jpg
+      label: Sypialnia
     image1: /assets/02-toaleta-1.jpg
     image2: /assets/03-toaleta-2.jpg
     image3: /assets/04-schody.jpg
