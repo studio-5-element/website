@@ -72,12 +72,42 @@ collections:
                 name: "gallery"
                 widget: "object"
                 fields:
-                  - { name: "image1", label: "1", widget: "image" }
-                  - { name: "image2", label: "2", widget: "image" }
-                  - { name: "image3", label: "3", widget: "image" }
-                  - { name: "image4", label: "4", widget: "image" }
-                  - { name: "image5", label: "5", widget: "image" }
-                  - { name: "image6", label: "6", widget: "image" }
+                  - label: "Kafelek1"
+                    name: "tile1"
+                    widget: "object"
+                    fields:
+                    - { name: "image", label: "zdjęcie", widget: "image" }
+                    - { name: "label", label: "nazwa", widget: "string" }
+                  - label: "Kafelek2"
+                    name: "tile2"
+                    widget: "object"
+                    fields:
+                    - { name: "image", label: "zdjęcie", widget: "image" }
+                    - { name: "label", label: "nazwa", widget: "string" }
+                  - label: "Kafelek3"
+                    name: "tile3"
+                    widget: "object"
+                    fields:
+                    - { name: "image", label: "zdjęcie", widget: "image" }
+                    - { name: "label", label: "nazwa", widget: "string" }
+                  - label: "Kafelek4"
+                    name: "tile4"
+                    widget: "object"
+                    fields:
+                    - { name: "image", label: "zdjęcie", widget: "image" }
+                    - { name: "label", label: "nazwa", widget: "string" }
+                  - label: "Kafelek5"
+                    name: "tile5"
+                    widget: "object"
+                    fields:
+                    - { name: "image", label: "zdjęcie", widget: "image" }
+                    - { name: "label", label: "nazwa", widget: "string" }
+                  - label: "Kafelek6"
+                    name: "tile6"
+                    widget: "object"
+                    fields:
+                    - { name: "image", label: "zdjęcie", widget: "image" }
+                    - { name: "label", label: "nazwa", widget: "string" }
       - label: "Strona Projekt"
         name: "project"
         file: "/content/pages/project.md"
