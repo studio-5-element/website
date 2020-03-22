@@ -6,6 +6,7 @@ import SEO from "../components/SEO"
 import Carousel from "../components/homePage/Carousel";
 import About from "../components/homePage/About";
 import Showcase from "../components/homePage/Showcase";
+import Contact from "../components/homePage/Contact";
 
 import styled from 'styled-components';
 
@@ -39,6 +40,7 @@ const IndexPage = () => {
             <Main>
                 <About />
                 <Showcase />
+                <Contact />
             </Main>
         </Layout>
     )

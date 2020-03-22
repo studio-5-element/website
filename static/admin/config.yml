@@ -108,6 +108,16 @@ collections:
                     fields:
                     - { name: "image", label: "zdjęcie", widget: "image" }
                     - { name: "label", label: "nazwa", widget: "string" }
+          - label: "Kontakt"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { name: "header", label: "Nagłówek", widget: "string", default: "" }
+              - { name: "description", label: "Opis", widget: "string", default: "" }
+              - { name: "name", label: "Imię", widget: "string", default: "" }
+              - { name: "email", label: "Email", widget: "string", default: "" }
+              - { name: "message", label: "Wiadomość", widget: "string", default: "" }
+              - { name: "button", label: "Przycisk", widget: "string", default: "" }
       - label: "Strona Projekt"
         name: "project"
         file: "/content/pages/project.md"

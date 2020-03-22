@@ -181,7 +181,6 @@ const About = () => {
         `
     );
     const { image, header, description } = data.allFile.edges[0].node.childMdx.frontmatter.about;
-    console.log(description);
 
     return (
         <Container>
