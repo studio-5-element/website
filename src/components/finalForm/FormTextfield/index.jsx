@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import TextareaAutosize from 'react-textarea-autosize';
 import { Field } from 'react-final-form';
 
 import styled from 'styled-components';
@@ -59,7 +60,7 @@ const TextfieldInput = styled.input`
 `;
 TextfieldInput.displayName = 'TextfieldInput';
 
-const TextfieldArea = styled.textarea`
+const TextfieldArea = styled(TextareaAutosize)`
     box-shadow: none;
     border: none;
     background: none;
@@ -67,7 +68,7 @@ const TextfieldArea = styled.textarea`
     padding: 5px;
     border-bottom: 1px solid rgba(0, 0, 0, .3);
     outline: none;
-    transition: border .5s;
+    transition: border .5s, height .15s;
     margin: 10px 0 40px;
 
     &:focus {
@@ -110,6 +111,7 @@ const FormTextfield = ({ label, name, placeholder, type, autoComplete, disabled,
                                                 type={type}
                                                 autoComplete={autoComplete}
                                                 disabled={disabled}
+                                                maxRows={10}
                                             />
                                         ) : (
                                             <TextfieldInput
