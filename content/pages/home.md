@@ -74,7 +74,7 @@ contact:
   header: Kontakt
   description: >-
     Wyślij nam wiadomość, jeżeli masz jakieś pytania lub jesteś zainteresowany/a
-    współpracą. Odpowiemy Tobie najszybciej jak to możliwe.
+    współpracą.
   name: 'Twoje Imię: *'
   email: 'Twój E-Mail: *'
   message: 'Twoja Wiadomość:'
