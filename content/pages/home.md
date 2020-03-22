@@ -70,4 +70,13 @@ showcase:
     image4: /assets/05-schody-1.jpg
     image5: /assets/11-sypialnia-1.jpg
     image6: /assets/12-sypialnia-2.jpg
+contact:
+  header: Kontakt
+  description: >-
+    Wyślij nam wiadomość, jeżeli masz jakieś pytania lub jesteś zainteresowany/a
+    współpracą. Odpowiemy Tobie najszybciej jak to możliwe.
+  name: 'Twoje Imię: *'
+  email: 'Twój E-Mail: *'
+  message: 'Twoja Wiadomość:'
+  button: wyślij
 ---
