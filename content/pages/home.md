@@ -43,7 +43,7 @@ about:
     marzenia.
 showcase:
   overlay: /assets/surface-945444_1920.jpg
-  title: BOGATE DOŚWIADCZENIE
+  title: Bogate doświadczenie
   subTitle: Zapoznaj się z niektórymi ze zrealizowanych przeze mnie projektów.
   gallery:
     tile1:
